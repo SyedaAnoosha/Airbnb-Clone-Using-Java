@@ -42,15 +42,20 @@ class Host extends User {
 
         System.out.print("\t\t\t\t\t\tEnter your password:");
         pass = sc.nextLine();
+
         System.out.println();
+
         for (int i = 0; i < ListOfHosts.size(); i++) {
+
             Host temp = new Host();
             temp.setPass(pass);
             temp.setName(name);
             temp.setEmail(email);
             temp.setID(ID);
             ListOfHosts.add(temp);
+
         }
+
     }
 
     public void choice() throws IOException {
