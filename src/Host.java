@@ -272,6 +272,7 @@ class Host extends User {
             String str;
 
             while ((str = br.readLine()) != null) {
+
                 if(Objects.equals(ID1, str)) {
                     System.out.println("\t\t\t\t\t\t\t Request for " + str);
                     System.out.println("\t\t\t\t\t\t\t Enter your choice ");
@@ -282,6 +283,7 @@ class Host extends User {
                 else{
                     System.out.println("\t\t\t\t\t\t\tNo Requested rooms under your name");
                 }
+
             }
 
             pr1.close();
