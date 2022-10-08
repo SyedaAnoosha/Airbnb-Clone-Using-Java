@@ -92,10 +92,10 @@ class Host extends User {
             C1.check_reviews();
         } else if (j==5){
             R1.check_data();
-        }
-        else{
+        } else{
             System.exit(0);
         }
+
     }
     private class RoomListings {
         String address,payment;
