@@ -4,6 +4,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 class Host extends User {
+
     Scanner sc = new Scanner(System.in);
     private final ArrayList<Host> ListOfHosts = new ArrayList<>();
     private final Listing V1;
@@ -298,6 +299,7 @@ class Host extends User {
             System.out.print("\t\t\t\t\t\t\tEnter: 1) Back to main menu\n\t\t\t\t\t\t\t2) Exit from system  ");
 
             int i = sc.nextInt();
+
             if(i==1){
                 choice();
             }
