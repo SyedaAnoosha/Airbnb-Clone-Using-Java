@@ -38,6 +38,7 @@ class EntryPoint {
 
 
     public void label(){
+
         System.out.println();
         System.out.println();
         System.out.println("\t\t\t\t\t\t\t\t\t*********************************************************************");
@@ -57,5 +58,7 @@ class EntryPoint {
         System.out.println("\t\t\t\t\t\t\t\t\t**********************************************************************");
         System.out.println();
         System.out.println();
+
     }
+
 }
