@@ -46,23 +46,28 @@ class Guest extends User {
         System.out.println();
 
         for (int i = 0; i < ListOfGuests.size(); i++) {
+
             Guest temp = new Guest();
             temp.setPass(pass);
             temp.setName(name);
             temp.setEmail(email);
             ListOfGuests.add(temp);
+
         }
     }
 
     public void choice() throws IOException, InterruptedException {
         System.out.println();
         System.out.println();
+
         System.out.println("\t\t\t\t*****************************************************************************************************************");
 
         System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t********   Welcome " + getName()+"   *******");
         System.out.print("\t\t\t\t\t\tWhat would you like to do\n\t\t\t\t\t\t1) Booking\n\t\t\t\t\t\t2) Give payment\n\t\t\t\t\t\t3) Give reviews\n\t\t\t\t\t\t4) Check for Hosts Approval\n\t\t\t\t\t\t5) Exit from System  : ");
+
         int i = sc.nextInt();
         System.out.println();
+
         if (i == 1) {
             book.booking();
         } else if (i == 2) {
@@ -74,6 +79,7 @@ class Guest extends User {
         } else {
             System.exit(0);
         }
+
     }
 
     class BookRoom{
