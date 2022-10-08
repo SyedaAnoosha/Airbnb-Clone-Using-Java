@@ -189,8 +189,10 @@ class Guest extends User {
         }
 
         public void submit_reviews() throws IOException, InterruptedException {
+
             System.out.println("\t\t\t\t\t\tReviews:");
             System.out.println();
+
             File file = new File("C:\\Users\\anush\\OneDrive\\Desktop\\Review.txt");
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
@@ -208,11 +210,13 @@ class Guest extends User {
 
             System.out.print("\t\t\t\t\t\t1) Back to main menu\n\t\t\t\t\t\t2) Exit from system : ");
             int i = sc.nextInt();
+
             if (i == 1) {
                 choice();
             } else {
                 System.exit(0);
             }
+
         }
     }
 
@@ -232,15 +236,18 @@ class Guest extends User {
             BR1= new BookRoom();
         }
         public void check_hosts_approval() throws IOException, InterruptedException {
+
             System.out.println();
             sc.nextLine();
             System.out.print("\t\t\t\t\t\tEnter the ID of Host from which you have requested for approval: ");
             ID1= sc.nextLine();
             System.out.println();
+
             File file = new File("C:\\Users\\anush\\OneDrive\\Desktop\\RequestRooms.txt");
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             String str;
+
             if(Objects.equals(BR1.getID(), getID1())) {
                 while ((str = br.readLine()) != null) {
                     System.out.println("\t\t\t\t\t\t" + str);
@@ -249,6 +256,7 @@ class Guest extends User {
             else{
                 System.out.println("\t\t\t\t\t\tYou have not requested any hosts yet.");
             }
+
             br.close();
             fr.close();
 
