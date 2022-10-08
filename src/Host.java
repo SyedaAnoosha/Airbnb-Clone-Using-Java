@@ -247,15 +247,20 @@ class Host extends User {
     private class RequestedGuest {
         RoomListings L1;
         String ID1;
+
         RequestedGuest(){
             L1= new RoomListings();
         }
+
         public void check_data() throws IOException {
+
             System.out.println();
+
             sc.nextLine();
             System.out.print("\t\t\t\t\t\t\tEnter your ID: ");
             ID1=sc.nextLine();
             System.out.println();
+
             File file=new File("C:\\Users\\anush\\OneDrive\\Desktop\\RequestRooms.txt");
             FileReader fr=new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
@@ -265,6 +270,7 @@ class Host extends User {
             PrintWriter pr1 = new PrintWriter(br1);
 
             String str;
+
             while ((str = br.readLine()) != null) {
                 if(Objects.equals(ID1, str)) {
                     System.out.println("\t\t\t\t\t\t\t Request for " + str);
@@ -277,6 +283,7 @@ class Host extends User {
                     System.out.println("\t\t\t\t\t\t\tNo Requested rooms under your name");
                 }
             }
+
             pr1.close();
             br1.close();
             fr1.close();
