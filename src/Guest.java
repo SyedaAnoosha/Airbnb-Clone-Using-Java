@@ -94,8 +94,10 @@ class Guest extends User {
         }
 
         public void booking() throws IOException, InterruptedException {
+
             System.out.println("\t\t\t\t\t\tThe available rooms/houses with their Hosts:");
             viewListing.start();
+
             sc.nextLine();
             System.out.print("\t\t\t\t\t\tEnter the ID of Host from which you wish to rent: ");
             ID = sc.nextLine();
@@ -111,11 +113,14 @@ class Guest extends User {
             pr.close();
             br.close();
             fr.close();
+
             System.out.println();
             System.out.println();
 
             System.out.println("\t\t\t\t\t\tYour choice has been forwarded to the Host. Wait for few days or hours for their response.");
             System.out.println("\t\t\t\t\t\tWhat would you wish to do?");
+
+
             System.out.print("\t\t\t\t\t\t1) Back to main menu\n\t\t\t\t\t\t2) Exit from system : ");
             int i = sc.nextInt();
             if (i == 1) {
