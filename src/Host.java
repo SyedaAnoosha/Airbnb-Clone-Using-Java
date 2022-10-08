@@ -11,6 +11,7 @@ class Host extends User {
     private final RoomListings H1;
     private final Reviews C1;
     private final  RequestedGuest R1;
+
     public Host(){
         V1=new Listing();
         P1=new HostPayment();
@@ -18,6 +19,7 @@ class Host extends User {
         C1=new Reviews();
         R1=new RequestedGuest();
     }
+
     Host getHost() {
         for (Host listOfHost : ListOfHosts) {
             return listOfHost;
@@ -26,7 +28,8 @@ class Host extends User {
     }
 
     public void enter() {
-        System.out.println("\t\t\t\t\t\tEnter your details:");
+
+        System.out.println("\t\t\t\t\t\t\t******** Enter your details ********");
         System.out.print("\t\t\t\t\t\tEnter your name:");
         name = sc.nextLine();
         System.out.print("\t\t\t\t\t\tEnter your ID:");
@@ -236,8 +239,10 @@ class Host extends User {
             fr1.close();
             fr.close();
             br.close();
+
             System.out.println();
             System.out.println();
+
             System.out.print("\t\t\t\t\t\t\tEnter: 1) Back to main menu\n\t\t\t\t\t\t\t2) Exit from system  ");
             int i = sc.nextInt();
             if(i==1){
