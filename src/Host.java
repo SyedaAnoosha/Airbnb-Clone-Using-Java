@@ -64,19 +64,26 @@ class Host extends User {
 
         System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t********   Welcome " + getName()+"   *******");
         System.out.println();
+
         System.out.print("\t\t\t\t\t\tEnter \n\t\t\t\t\t\t\t1. View listing \n\t\t\t\t\t\t\t2. Add new listing\n\t\t\t\t\t\t\t3. Review payments\n\t\t\t\t\t\t\t4. Check reviews\n\t\t\t\t\t\t\t5. Check for requested rooms\n\t\t\t\t\t\t\t6. Exit from System");
         System.out.print("\t");
+
         int j = sc.nextInt();
+
         if (j == 1) {
             V1.start();
             System.out.print("\t\t\t\t\t\t\t1) Back to main menu\n\t\t\t\t\t\t\t2)exit from system  ");
+
             int i = sc.nextInt();
+
             if(i==1){
                 choice();
             }
+
             else{
                 System.exit(0);
             }
+
         } else if(j==2) {
             H1.placeListing();
         } else if (j==3) {
