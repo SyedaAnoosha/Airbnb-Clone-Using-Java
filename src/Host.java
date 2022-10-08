@@ -207,32 +207,41 @@ class Host extends User {
             }
 
         }
+
     }
 
     private class Reviews {
         String str;
+
         public void check_reviews() throws IOException {
             System.out.println();
             System.out.println("\t\t\t\t\t\t\tReviews");
             System.out.println();
+
             File file=new File("C:\\Users\\anush\\OneDrive\\Desktop\\Review.txt");
             FileReader fr=new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
+
             while ((str = br.readLine()) != null) {
                 System.out.println("\t\t\t\t\t\t\t"+str);
             }
             br.close();
+
             System.out.println();
             System.out.println();
             System.out.print("\t\t\t\t\t\t\tEnter: 1) Back to main menu\n\t\t\t\t\t\t\t2)exit from system  ");
+
             int i = sc.nextInt();
+
             if(i==1){
                 choice();
             }
             else{
                 System.exit(0);
             }
+
         }
+
     }
 
     private class RequestedGuest {
