@@ -170,6 +170,7 @@ class Guest extends User {
         private final ArrayList<String> reviews = new ArrayList<>();
 
         public void addReviews(String s) throws IOException {
+
             reviews.add(s);
             File file = new File("C:\\Users\\anush\\OneDrive\\Desktop\\Review.txt");
             FileWriter fr = new FileWriter(file, true);
@@ -180,9 +181,11 @@ class Guest extends User {
             pr.close();
             br.close();
             fr.close();
+
             System.out.println();
             System.out.println("\t\t\t\t\t\tSuccessfully entered review!");
             System.out.println();
+
         }
 
         public void submit_reviews() throws IOException, InterruptedException {
