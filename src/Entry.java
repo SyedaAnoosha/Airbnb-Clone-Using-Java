@@ -8,23 +8,34 @@ class EntryPoint {
         host = new Host();
         guest = new Guest();
     }
+
     public void entry() throws IOException, InterruptedException {
+
         Scanner sc = new Scanner(System.in);
         System.out.println();
         System.out.println();
+
         System.out.println("\t\t\t\t\t\t\t You can log in as: ");
         System.out.println("\t\t\t\t\t\t\t 1. Guest    2. Host");
         System.out.print("\t\t\t\t\t\t\t Enter your choice: ");
+
         int i = sc.nextInt();
         System.out.println();
+
         if (i == 1) {
+
             guest.enter();
             guest.choice();
+
         } else {
+
             host.enter();
             host.choice();
+
         }
+
     }
+
 
     public void label(){
         System.out.println();
