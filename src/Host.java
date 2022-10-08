@@ -296,6 +296,7 @@ class Host extends User {
             System.out.println();
 
             System.out.print("\t\t\t\t\t\t\tEnter: 1) Back to main menu\n\t\t\t\t\t\t\t2) Exit from system  ");
+
             int i = sc.nextInt();
             if(i==1){
                 choice();
@@ -303,6 +304,9 @@ class Host extends User {
             else{
                 System.exit(0);
             }
+
         }
+
     }
+
 }
