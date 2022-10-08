@@ -29,13 +29,18 @@ class Guest extends User {
     }
 
     public void enter() {
+
         System.out.println();
+
         System.out.println("\t\t\t\t\t\tEnter your details: ");
         System.out.println();
+
         System.out.print("\t\t\t\t\t\tEnter your name: ");
         name = sc.nextLine();
+
         System.out.print("\t\t\t\t\t\tEnter your email: ");
         email = sc.nextLine();
+
         System.out.print("\t\t\t\t\t\tEnter your password: ");
         pass = sc.nextLine();
         System.out.println();
