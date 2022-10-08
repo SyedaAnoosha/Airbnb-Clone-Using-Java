@@ -98,6 +98,7 @@ class Host extends User {
 
     }
     private class RoomListings {
+
         String address,payment;
 
         public String getAddress() {
@@ -117,22 +118,28 @@ class Host extends User {
         }
 
         public void placeListing() throws IOException {
+
             System.out.println();
             System.out.println();
 
             File myFile = new File("C:\\Users\\anush\\OneDrive\\Desktop\\Listing.txt");
+
             System.out.print("\t\t\t\t\t\t\tEnter your name: ");
             name = sc.nextLine();
             setName(name);
+
             System.out.print("\t\t\t\t\t\t\tEnter your ID: ");
             ID= sc.nextLine();
             setID(ID);
+
             System.out.print("\t\t\t\t\t\t\tEnter your address and renting details: ");
             address = sc.nextLine();
             setAddress(address);
+
             System.out.print("\t\t\t\t\t\t\tEnter payment details: ");
             payment = sc.nextLine();
             setPayment(payment);
+
             System.out.println();
             System.out.println();
 
@@ -151,10 +158,13 @@ class Host extends User {
             pr.close();
             br.close();
             fr.close();
+
             System.out.println("\t\t\t\t\t\t\tSuccessfully entered record!");
             System.out.println();
             System.out.println();
+
             System.out.print("\t\t\t\t\t\t\tEnter: 1) Back to main menu\n\t\t\t\t\t\t\t2) Exit from system  : ");
+
             int i = sc.nextInt();
 
             if(i==1){
@@ -163,7 +173,9 @@ class Host extends User {
             else{
                 System.exit(0);
             }
+
         }
+
     }
     private class HostPayment{
         String str;
