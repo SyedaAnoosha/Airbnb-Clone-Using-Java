@@ -94,7 +94,8 @@ class Host extends User {
         } else if (j==5){
             R1.check_data();
         } else{
-            System.exit(0);
+            System.out.println("\t\t\t\t\t\t\tEnter valid choice: ");
+            choice();
         }
 
     }
@@ -275,27 +276,22 @@ class Host extends User {
             while ((str = br.readLine()) != null) {
 
                 if(Objects.equals(ID1, str)) {
-                    System.out.println("\t\t\t\t\t\t\t Request for " + str);
-                    System.out.println("\t\t\t\t\t\t\t Enter your choice ");
+                    System.out.println("\t\t\t\t\t\t\t Request for " + str + " : ");
+                    System.out.print("\t\t\t\t\t\t\t Enter your choice:  ");
                     String req= sc.nextLine();
                     pr1.write(req);
                     pr1.println();
+                    pr1.close();
+                    br1.close();
+                    fr1.close();
                 }
-                else{
-                    System.out.println("\t\t\t\t\t\t\tNo Requested rooms under your name");
-                }
-
             }
 
-            pr1.close();
-            br1.close();
-            fr1.close();
             fr.close();
             br.close();
 
             System.out.println();
             System.out.println();
-
             System.out.print("\t\t\t\t\t\t\tEnter: 1) Back to main menu\n\t\t\t\t\t\t\t2) Exit from system  ");
 
             int i = sc.nextInt();
