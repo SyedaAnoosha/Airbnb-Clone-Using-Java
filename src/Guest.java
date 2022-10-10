@@ -1,5 +1,8 @@
-import java.awt.print.Book;
 import java.io.*;
+import java.lang.reflect.Array;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -11,14 +14,12 @@ class Guest extends User {
     private final BookRoom book;
     private final Payment G1;
     private final Review R1;
-    private final RequestedHosts HR1;
 
     public Guest() {
         viewListing = new Listing();
         book = new BookRoom();
         G1 = new Payment();
         R1 = new Review();
-        HR1= new RequestedHosts();
     }
 
     Guest getGuest() {
@@ -57,58 +58,74 @@ class Guest extends User {
     }
 
     public void choice() throws IOException, InterruptedException {
+
         System.out.println();
         System.out.println();
 
         System.out.println("\t\t\t\t*****************************************************************************************************************");
 
         System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t********   Welcome " + getName()+"   *******");
-        System.out.print("\t\t\t\t\t\tWhat would you like to do\n\t\t\t\t\t\t1) Booking\n\t\t\t\t\t\t2) Give payment\n\t\t\t\t\t\t3) Give reviews\n\t\t\t\t\t\t4) Check for Hosts Approval\n\t\t\t\t\t\t5) Exit from System  : ");
+        System.out.print("\t\t\t\t\t\tWhat would you like to do\n\t\t\t\t\t\t1) Booking and checking Hosts approval\n\t\t\t\t\t\t2) Give payment\n\t\t\t\t\t\t3) Give reviews\n\t\t\t\t\t\t4) Exit from System  : ");
 
         int i = sc.nextInt();
         System.out.println();
 
         if (i == 1) {
-            book.booking();
+            book.enter_id();
         } else if (i == 2) {
             G1.give_payment();
         } else if (i == 3) {
             R1.submit_reviews();
-        } else if (i == 4) {
-            HR1.check_hosts_approval();
-        } else {
-            System.exit(0);
+        }  else{
+            System.out.println("\t\t\t\t\t\t\tEnter valid choice: ");
+            choice();
         }
 
     }
 
     class BookRoom{
-        String ID;
+        String ID1;
+        int c;
+
+        Scanner sc = new Scanner(System.in);
 
         public String getID() {
-            return ID;
+            return ID1;
         }
 
         public void setID(String ID) {
-            this.ID = ID;
+            this.ID1 = ID;
         }
-
-        public void booking() throws IOException, InterruptedException {
+        public void enter_id() throws IOException, InterruptedException {
 
             System.out.println("\t\t\t\t\t\tThe available rooms/houses with their Hosts:");
             viewListing.start();
 
-            sc.nextLine();
-            System.out.print("\t\t\t\t\t\tEnter the ID of Host from which you wish to rent: ");
-            ID = sc.nextLine();
-            setID(ID);
+            System.out.print("\t\t\t\t\t\tEnter the ID of Host ");
+            ID1 = sc.nextLine();
+            setID(ID1);
             System.out.println();
 
+            System.out.print("\t\t\t\t\t\tEnter 1) Wish to rent\n\t\t\t\t\t\t      2) Check for host's approval    ");
+            c=sc.nextInt();
+
+            if(c==1){
+                booking();
+            } else if (c==2){
+                check_hosts_approval();
+            }
+            else {
+                System.out.println("\t\t\t\t\t\tEnter valid choice ");
+                enter_id();
+            }
+        }
+
+        public void booking() throws IOException, InterruptedException {
             File file = new File("C:\\Users\\anush\\OneDrive\\Desktop\\RequestRooms.txt");
             FileWriter fr = new FileWriter(file, true);
             BufferedWriter br = new BufferedWriter(fr);
             PrintWriter pr = new PrintWriter(br);
-            pr.write(ID);
+            pr.write(ID1);
             pr.println();
             pr.close();
             br.close();
@@ -128,13 +145,41 @@ class Guest extends User {
             } else {
                 System.exit(0);
             }
-
         }
+
+        public void check_hosts_approval() throws IOException, InterruptedException {
+
+            System.out.println();
+            System.out.println();
+
+            File file = new File("C:\\Users\\anush\\OneDrive\\Desktop\\RequestRooms.txt");
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            ArrayList<String> store= new ArrayList<>();
+            String str = "";
+            while((str=br.readLine())!=null){
+                System.out.println("\t\t\t\t\t\t"+str);
+            }
+
+            br.close();
+            fr.close();
+
+
+            System.out.print("\t\t\t\t\t\t1) Back to main menu\n\t\t\t\t\t\t2) Exit from system : ");
+            int i = sc.nextInt();
+            if (i == 1) {
+                choice();
+            } else {
+                System.exit(0);
+            }
+        }
+
     }
 
     class Payment {
         String name;
         float amount;
+        Scanner sc = new Scanner(System.in);
         public void give_payment() throws IOException, InterruptedException {
             File file = new File("C:\\Users\\anush\\OneDrive\\Desktop\\Payment.txt");
             sc.nextLine();
@@ -168,6 +213,7 @@ class Guest extends User {
 
     class Review {
         private final ArrayList<String> reviews = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
 
         public void addReviews(String s) throws IOException {
 
@@ -217,57 +263,6 @@ class Guest extends User {
                 System.exit(0);
             }
 
-        }
-    }
-
-    class RequestedHosts{
-        String ID1;
-
-        public String getID1() {
-            return ID1;
-        }
-
-        public void setID1(String ID1) {
-            this.ID1 = ID1;
-        }
-
-        BookRoom BR1;
-        RequestedHosts(){
-            BR1= new BookRoom();
-        }
-        public void check_hosts_approval() throws IOException, InterruptedException {
-
-            System.out.println();
-            sc.nextLine();
-            System.out.print("\t\t\t\t\t\tEnter the ID of Host from which you have requested for approval: ");
-            ID1= sc.nextLine();
-            System.out.println();
-
-            File file = new File("C:\\Users\\anush\\OneDrive\\Desktop\\RequestRooms.txt");
-            FileReader fr = new FileReader(file);
-            BufferedReader br = new BufferedReader(fr);
-            String str;
-
-            if(Objects.equals(BR1.getID(), getID1())) {
-                while ((str = br.readLine()) != null) {
-                    System.out.println("\t\t\t\t\t\t" + str);
-                }
-            }
-            else{
-                System.out.println("\t\t\t\t\t\tYou have not requested any hosts yet.");
-            }
-
-            br.close();
-            fr.close();
-
-
-            System.out.print("\t\t\t\t\t\t1) Back to main menu\n\t\t\t\t\t\t2) Exit from system : ");
-            int i = sc.nextInt();
-            if (i == 1) {
-                choice();
-            } else {
-                System.exit(0);
-            }
         }
     }
 }
