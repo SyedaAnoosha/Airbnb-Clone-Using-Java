@@ -1,10 +1,5 @@
 import java.io.*;
-import java.lang.reflect.Array;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
 class Guest extends User {
@@ -76,11 +71,12 @@ class Guest extends User {
             G1.give_payment();
         } else if (i == 3) {
             R1.submit_reviews();
-        }  else{
+        } else if (i == 4) {
+            System.exit(0);
+        } else{
             System.out.println("\t\t\t\t\t\t\tEnter valid choice: ");
             choice();
         }
-
     }
 
     class BookRoom{
@@ -112,7 +108,7 @@ class Guest extends User {
             if(c==1){
                 booking();
             } else if (c==2){
-                check_hosts_approval();
+                check_hosts_approval(ID1);
             }
             else {
                 System.out.println("\t\t\t\t\t\tEnter valid choice ");
@@ -147,23 +143,25 @@ class Guest extends User {
             }
         }
 
-        public void check_hosts_approval() throws IOException, InterruptedException {
-
+        public void check_hosts_approval(String word) throws IOException, InterruptedException {
             System.out.println();
             System.out.println();
 
             File file = new File("C:\\Users\\anush\\OneDrive\\Desktop\\RequestRooms.txt");
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
-            ArrayList<String> store= new ArrayList<>();
             String str = "";
             while((str=br.readLine())!=null){
-                System.out.println("\t\t\t\t\t\t"+str);
+                if(str.equals(word)) {
+                    System.out.println("\t\t\t\t\t\t" +br.readLine());
+                }
             }
 
             br.close();
             fr.close();
 
+            System.out.println();
+            System.out.println();
 
             System.out.print("\t\t\t\t\t\t1) Back to main menu\n\t\t\t\t\t\t2) Exit from system : ");
             int i = sc.nextInt();
@@ -173,7 +171,6 @@ class Guest extends User {
                 System.exit(0);
             }
         }
-
     }
 
     class Payment {
