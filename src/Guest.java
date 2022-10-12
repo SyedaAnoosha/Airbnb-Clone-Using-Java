@@ -93,11 +93,10 @@ class Guest extends User {
         public void setID(String ID) {
             this.ID1 = ID;
         }
-        public void run() {
+        public synchronized void run() {
             System.out.print("\t\t\t\t\t\tEnter the ID of Host ");
             ID1 = sc.nextLine();
             setID(ID1);
-            System.out.println();
 
             System.out.print("\t\t\t\t\t\tEnter 1) Wish to rent\n\t\t\t\t\t\t      2) Check for host's approval    ");
             c=sc.nextInt();
@@ -181,16 +180,18 @@ class Guest extends User {
     }
 
     private class PaymentSubmission {
-        String name;
+        String name,ID1;
         float amount;
         Scanner sc = new Scanner(System.in);
         public void give_payment() throws IOException, InterruptedException {
             File file = new File("C:\\Users\\anush\\OneDrive\\Desktop\\Payment.txt");
-            sc.nextLine();
             System.out.print("\t\t\t\t\t\tEnter your name: ");
             name = sc.nextLine();
             System.out.print("\t\t\t\t\t\tEnter paying amount: ");
             amount = sc.nextFloat();
+            sc.nextLine();
+            System.out.print("\t\t\t\t\t\tEnter ID of host ");
+            ID1 = sc.nextLine();
 
             FileWriter fr = new FileWriter(file, true);
             BufferedWriter br = new BufferedWriter(fr);
@@ -198,6 +199,8 @@ class Guest extends User {
             pr.write("Name: " + name);
             pr.println();
             pr.write("Payment: " + amount);
+            pr.println();
+            pr.write("ID: " + ID1);
             pr.println();
             pr.println();
             pr.close();
@@ -252,8 +255,6 @@ class Guest extends User {
             }
             br.close();
             fr.close();
-
-            sc.nextLine();
             System.out.print("\t\t\t\t\t\tEnter the reviews below: ");
             String com = sc.nextLine();
             addReviews(com);
