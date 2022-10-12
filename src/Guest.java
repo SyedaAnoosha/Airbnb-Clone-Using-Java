@@ -120,7 +120,7 @@ class Guest extends User {
             System.out.println("\t\t\t\t\t\tThe available rooms/houses with their Hosts' Information:");
             viewListing.setPriority(MAX_PRIORITY);
             viewListing.start();
-            start();
+            new BookingRoom().start();
         }
 
         public void booking() throws IOException, InterruptedException {
