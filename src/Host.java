@@ -8,17 +8,19 @@ class Host extends User {
     Scanner sc = new Scanner(System.in);
     private final ArrayList<Host> ListOfHosts = new ArrayList<>();
     private final Listing V1;
-    private final HostPayment P1;
-    private final RoomListings H1;
+    private final CheckGuestsPayment P1;
+    private final AddRoomListings H1;
     private final Reviews C1;
     private final  RequestedGuest R1;
+    private final ViewListings VH1;
 
     public Host(){
         V1=new Listing();
-        P1=new HostPayment();
-        H1 = new RoomListings();
+        P1=new CheckGuestsPayment();
+        H1 = new AddRoomListings();
         C1=new Reviews();
         R1=new RequestedGuest();
+        VH1= new ViewListings();
     }
 
     Host getHost() {
@@ -47,23 +49,21 @@ class Host extends User {
         System.out.println();
 
         for (int i = 0; i < ListOfHosts.size(); i++) {
-
             Host temp = new Host();
             temp.setPass(pass);
             temp.setName(name);
             temp.setEmail(email);
             temp.setID(ID);
             ListOfHosts.add(temp);
-
         }
-
     }
 
-    public void choice() throws IOException {
+    public void choice() throws IOException, InterruptedException {
         System.out.println();
         System.out.println("\t\t\t\t*****************************************************************************************************************");
 
         System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t********   Welcome " + getName()+"   *******");
+        System.out.println();
         System.out.println();
 
         System.out.print("\t\t\t\t\t\tEnter \n\t\t\t\t\t\t\t1. View listing \n\t\t\t\t\t\t\t2. Add new listing\n\t\t\t\t\t\t\t3. Review payments\n\t\t\t\t\t\t\t4. Check reviews\n\t\t\t\t\t\t\t5. Check for requested rooms\n\t\t\t\t\t\t\t6. Exit from System");
@@ -72,19 +72,7 @@ class Host extends User {
         int j = sc.nextInt();
 
         if (j == 1) {
-            V1.start();
-            System.out.print("\t\t\t\t\t\t\t1) Back to main menu\n\t\t\t\t\t\t\t2)exit from system  ");
-
-            int i = sc.nextInt();
-
-            if(i==1){
-                choice();
-            }
-
-            else{
-                System.exit(0);
-            }
-
+            VH1.display();
         } else if(j==2) {
             H1.placeListing();
         } else if (j==3) {
@@ -99,7 +87,31 @@ class Host extends User {
         }
 
     }
-    private class RoomListings {
+    private class ViewListings extends Thread{
+
+        public void run() {
+            sc.nextLine();
+            System.out.print("\t\t\t\t\t\t\t1) Back to main menu\n\t\t\t\t\t\t\t2) Exit from system  ");
+            int i = sc.nextInt();
+            if(i==1){
+                try {
+                    choice();
+                } catch (IOException | InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            else{
+                System.exit(0);
+            }
+        }
+        public void display (){
+            System.out.println("\t\t\t\t\t\t\tAvailable Rooms to be rented:");
+            V1.setPriority(MAX_PRIORITY);
+            V1.start();
+            new ViewListings().start();
+        }
+    }
+    private class AddRoomListings {
 
         String address,payment;
 
@@ -119,13 +131,13 @@ class Host extends User {
             this.payment = payment;
         }
 
-        public void placeListing() throws IOException {
+        public void placeListing() throws IOException, InterruptedException {
 
             System.out.println();
             System.out.println();
 
             File myFile = new File("C:\\Users\\anush\\OneDrive\\Desktop\\Listing.txt");
-
+            sc.nextLine();
             System.out.print("\t\t\t\t\t\t\tEnter your name: ");
             name = sc.nextLine();
             setName(name);
@@ -179,9 +191,9 @@ class Host extends User {
         }
 
     }
-    private class HostPayment{
+    private class CheckGuestsPayment {
         String str;
-        public void check_payment() throws IOException {
+        public void check_payment() throws IOException, InterruptedException {
 
             System.out.println();
             System.out.println("\t\t\t\t\t\t\tPayments:");
@@ -215,7 +227,7 @@ class Host extends User {
     private class Reviews {
         String str;
 
-        public void check_reviews() throws IOException {
+        public void check_reviews() throws IOException, InterruptedException {
             System.out.println();
             System.out.println("\t\t\t\t\t\t\tReviews");
             System.out.println();
@@ -247,14 +259,14 @@ class Host extends User {
     }
 
     private class RequestedGuest {
-        RoomListings L1;
+        AddRoomListings L1;
         String ID1;
 
         RequestedGuest(){
-            L1= new RoomListings();
+            L1= new AddRoomListings();
         }
 
-        public void check_data() throws IOException {
+        public void check_data() throws IOException, InterruptedException {
 
             System.out.println();
 
