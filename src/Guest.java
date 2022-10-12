@@ -6,15 +6,15 @@ class Guest extends User {
     Scanner sc = new Scanner(System.in);
     private final ArrayList<Guest> ListOfGuests = new ArrayList<>();
     private final Listing viewListing;
-    private final BookRoom book;
-    private final Payment G1;
-    private final Review R1;
+    private final BookingRoom book;
+    private final PaymentSubmission G1;
+    private final ReviewSubmission R1;
 
     public Guest() {
         viewListing = new Listing();
-        book = new BookRoom();
-        G1 = new Payment();
-        R1 = new Review();
+        book = new BookingRoom();
+        G1 = new PaymentSubmission();
+        R1 = new ReviewSubmission();
     }
 
     Guest getGuest() {
@@ -47,6 +47,7 @@ class Guest extends User {
             temp.setPass(pass);
             temp.setName(name);
             temp.setEmail(email);
+            temp.setID(ID);
             ListOfGuests.add(temp);
 
         }
@@ -79,7 +80,7 @@ class Guest extends User {
         }
     }
 
-    class BookRoom{
+    private class BookingRoom extends Thread{
         String ID1;
         int c;
 
@@ -92,11 +93,7 @@ class Guest extends User {
         public void setID(String ID) {
             this.ID1 = ID;
         }
-        public void enter_id() throws IOException, InterruptedException {
-
-            System.out.println("\t\t\t\t\t\tThe available rooms/houses with their Hosts:");
-            viewListing.start();
-
+        public void run() {
             System.out.print("\t\t\t\t\t\tEnter the ID of Host ");
             ID1 = sc.nextLine();
             setID(ID1);
@@ -106,14 +103,24 @@ class Guest extends User {
             c=sc.nextInt();
 
             if(c==1){
-                booking();
-            } else if (c==2){
-                check_hosts_approval(ID1);
+                try {
+                    booking();
+                } catch (IOException | InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                try {
+                    check_hosts_approval(ID1);
+                } catch (IOException | InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
-            else {
-                System.out.println("\t\t\t\t\t\tEnter valid choice ");
-                enter_id();
-            }
+        }
+        public void enter_id() {
+            System.out.println("\t\t\t\t\t\tThe available rooms/houses with their Hosts' Information:");
+            viewListing.setPriority(MAX_PRIORITY);
+            viewListing.start();
+            start();
         }
 
         public void booking() throws IOException, InterruptedException {
@@ -173,7 +180,7 @@ class Guest extends User {
         }
     }
 
-    class Payment {
+    private class PaymentSubmission {
         String name;
         float amount;
         Scanner sc = new Scanner(System.in);
@@ -208,7 +215,7 @@ class Guest extends User {
         }
     }
 
-    class Review {
+    private class ReviewSubmission {
         private final ArrayList<String> reviews = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
 
