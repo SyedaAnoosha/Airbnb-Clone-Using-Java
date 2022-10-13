@@ -16,14 +16,6 @@ class Guest extends User {
         G1 = new PaymentSubmission();
         R1 = new ReviewSubmission();
     }
-
-    Guest getGuest() {
-        for (Guest listOfGuest : ListOfGuests) {
-            return listOfGuest;
-        }
-        return null;
-    }
-
     public void enter() {
 
         System.out.println();
@@ -52,7 +44,6 @@ class Guest extends User {
 
         }
     }
-
     public void choice() throws IOException, InterruptedException {
 
         System.out.println();

@@ -22,13 +22,6 @@ class Host extends User {
         VH1= new ViewListings();
     }
 
-    Host getHost() {
-        for (Host listOfHost : ListOfHosts) {
-            return listOfHost;
-        }
-        return null;
-    }
-
     public void enter() {
 
         System.out.println("\t\t\t\t\t\t\t******** Enter your details ********");
