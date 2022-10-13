@@ -94,6 +94,11 @@ class Guest extends User {
             this.ID1 = ID;
         }
         public synchronized void run() {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             System.out.print("\t\t\t\t\t\tEnter the ID of Host ");
             ID1 = sc.nextLine();
             setID(ID1);

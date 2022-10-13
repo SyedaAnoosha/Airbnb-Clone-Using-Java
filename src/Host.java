@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
 class Host extends User {
@@ -88,8 +87,12 @@ class Host extends User {
 
     }
     private class ViewListings extends Thread{
-
         public void run() {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             sc.nextLine();
             System.out.print("\t\t\t\t\t\t\t1) Back to main menu\n\t\t\t\t\t\t\t2) Exit from system  ");
             int i = sc.nextInt();
@@ -105,7 +108,8 @@ class Host extends User {
             }
         }
         public void display (){
-            System.out.println("\t\t\t\t\t\t\tAvailable Rooms to be rented:");
+            System.out.println();
+            System.out.println("\t\t\t\t\t\t\tAvailable Rooms :");
             V1.setPriority(MAX_PRIORITY);
             V1.start();
             new ViewListings().start();
@@ -287,7 +291,7 @@ class Host extends User {
 
             while ((str = br.readLine()) != null) {
 
-                if(Objects.equals(ID1, str)) {
+                if(ID1.equals(str)) {
                     System.out.println("\t\t\t\t\t\t\t Request for " + str + " : ");
                     System.out.print("\t\t\t\t\t\t\t Enter your choice:  ");
                     String req= sc.nextLine();
