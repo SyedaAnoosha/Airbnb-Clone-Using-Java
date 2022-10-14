@@ -129,7 +129,6 @@ class Host extends User {
         }
 
         public void placeListing() throws IOException, InterruptedException {
-
             System.out.println();
             System.out.println();
 
@@ -216,9 +215,7 @@ class Host extends User {
             else{
                 System.exit(0);
             }
-
         }
-
     }
 
     private class Reviews {

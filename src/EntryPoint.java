@@ -1,7 +1,7 @@
 import java.io.IOException;
 import java.util.Scanner;
 
-class EntryPoint {
+class EntryPoint extends Thread{
     private final Host host ;
     private final Guest guest ;
     public EntryPoint(){
@@ -10,7 +10,11 @@ class EntryPoint {
     }
 
     public void entry() throws IOException, InterruptedException {
-
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         Scanner sc = new Scanner(System.in);
         System.out.println();
         System.out.println();
@@ -37,25 +41,31 @@ class EntryPoint {
     }
 
 
-    public void label(){
+    public void run(){
 
         System.out.println();
         System.out.println();
         System.out.println("\t\t\t\t\t\t\t\t\t*********************************************************************");
         System.out.println("\t\t\t\t\t\t\t\t\t************************* Welcome to Airbnb *************************");
         System.out.println("\t\t\t\t\t\t\t\t\t*********************************************************************");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         System.out.println();
         System.out.println();
         System.out.println("\t\t\t\t\t\t\t\t\t**********************************************************************");
-        System.out.println("\t\t\t\t\t\t\t\t\t************************** Java OOP Project **************************");
+        System.out.println("\t\t\t\t\t\t\t\t\t**************************** Java Project ****************************");
         System.out.println("\t\t\t\t\t\t\t\t\t********************* Created By: Syeda Anoosha **********************");
         System.out.println("\t\t\t\t\t\t\t\t\t*********************** Roll Number: 21SW004 *************************");
         System.out.println("\t\t\t\t\t\t\t\t\t**********************************************************************");
-        System.out.println();
-        System.out.println();
-        System.out.println("\t\t\t\t\t\t\t\t\t**********************************************************************");
-        System.out.println("\t\t\t\t\t\t\t\t\t********************* Submitted to : Sir Mohsin **********************");
-        System.out.println("\t\t\t\t\t\t\t\t\t**********************************************************************");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         System.out.println();
         System.out.println();
 
